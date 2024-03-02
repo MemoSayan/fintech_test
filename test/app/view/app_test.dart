@@ -1,5 +1,5 @@
 import 'package:fintech_test/app/app.dart';
-import 'package:fintech_test/counter/counter.dart';
+import 'package:fintech_test/counter_borrar/counter.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
