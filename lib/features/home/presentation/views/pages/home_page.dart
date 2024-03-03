@@ -1,122 +1,77 @@
-import 'package:fintech_test/core/theme/theme.dart';
+import 'package:fintech_test/core/core.dart';
 import 'package:fintech_test/features/home/presentation/logic/logic.dart';
+import 'package:fintech_test/features/home/presentation/logic/movements_bloc/bloc/movements_bloc.dart';
+import 'package:fintech_test/features/home/presentation/views/widgets/bottom_navbar.dart';
+import 'package:fintech_test/features/home/presentation/views/widgets/movements_widgets.dart';
+import 'package:fintech_test/features/home/presentation/views/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  bool showBalance = false;
 
   @override
   Widget build(BuildContext context) {
-    var _showBalance = false;
+    context.read<HeaderBloc>().add(GetBalance('123456'));
+    context.read<MovementsBloc>().add(const GetMovements('123456'));
     return Scaffold(
+        backgroundColor: AppColors.primaryLigthBackground,
         body: CustomScrollView(
-      slivers: <Widget>[
-        SliverAppBar(
-          backgroundColor: Colors.transparent,
-          expandedHeight: 300,
-          collapsedHeight: 300,
-          pinned: true,
-          automaticallyImplyLeading: false,
-          flexibleSpace: FlexibleSpaceBar(
-            title: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SizedBox(
-                      width: 20.w,
+          slivers: [
+            const CustomSliverAppBar(),
+            BlocBuilder<MovementsBloc, MovementsState>(
+              builder: (context, state) {
+                if (state is MovementsLoading) {
+                  return const SliverToBoxAdapter(
+                    child: Center(
+                      child: CircularProgressIndicator(),
                     ),
-                    Text('eCLUB',
-                        style: TextStyle(color: Colors.white, fontSize: 20.sp)),
-                    SizedBox(
-                      width: 20.w,
+                  );
+                }
+                if (state is MovementsLoaded) {
+                  return MainMovementsWidget(
+                    movements: state.movements,
+                  );
+                }
+                if (state is MovementsError) {
+                  return SliverToBoxAdapter(
+                    child: Center(
+                      child: Text(state.message),
                     ),
-                    Icon(
-                      Icons.menu_rounded,
-                      color: Colors.white,
-                      size: 24.sp,
+                  );
+                } else {
+                  return const SliverToBoxAdapter(
+                    child: Center(
+                      child: Text('Error'),
                     ),
-                    //SizedBox(width: 5,)
-                  ],
-                ),
-                SizedBox(
-                  height: 70.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: 50.w),
-                  child: Text(
-                    'Disponible',
-                    style: TextStyle(color: Colors.white, fontSize: 15.sp),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: 50.w, top: 20.h),
-                  child: BlocBuilder<HeaderBloc, HeaderState>(
-                    builder: (context, state) {
-                      if (state.balanceStatus == BalanceStatus.hidden) {
-                        _showBalance = false;
-                      } else {
-                        _showBalance = true;
-                      }
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            state.balanceStatus == BalanceStatus.hidden
-                                ? 'Gs. 2.300.000'
-                                : '**********',
-                            style:TextStyle(
-                              color: Colors.white,
-                              fontSize: 25.sp,
-                              fontWeight: FontWeight.w600,
-                          ),),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          GestureDetector(
-                              onTap: () {
-                                context
-                                    .read<HeaderBloc>()
-                                    .add(ToggleBalance(_showBalance));
-                              },
-                              child: Icon(
-                                state.balanceStatus == BalanceStatus.hidden
-                                    ? Icons.visibility_off_rounded
-                                    : Icons.visibility_rounded,
-                                color: Colors.white,
-                              ))
-                        ],
-                      );
-                    },
-                  ),
-                ),
-              ],
+                  );
+                }
+              },
             ),
-            background: Container(
-              decoration: const BoxDecoration(
-                gradient: AppColors.primaryGradient,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
+          ],
+        ),
+        bottomNavigationBar: Theme(data: Theme.of(context).copyWith(
+          canvasColor: AppColors.primaryLigthBackground,
+          splashColor: AppColors.secondary.withOpacity(0.2),
+        ),
+        child: Container(
+          decoration: const BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.secondaryLigthBackground,
+                spreadRadius: 10,
+                blurRadius: 20,
+                offset: Offset(0, -1),
               ),
-            ),
+            ],
           ),
-        ),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index) {
-              return ListTile(
-                title: Text('Item #$index'),
-              );
-            },
-            childCount: 100,
-          ),
-        ),
-      ],
-    ));
+          child: const CustomBottomNavigationBar())),
+        );
   }
 }
+
+
+

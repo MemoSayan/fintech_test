@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:fintech_test/core/environment/environment_config.dart';
+import 'package:fintech_test/core/injectors/get_it_injectors.dart';
 import 'package:flutter/widgets.dart';
 
 class AppBlocObserver extends BlocObserver {
@@ -28,6 +30,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   Bloc.observer = const AppBlocObserver();
 
   // Add cross-flavor configuration here
+  final environment = EnvironmentConfig.environmentToString();
+  await configureDependencies(environment);
 
   runApp(await builder());
 }

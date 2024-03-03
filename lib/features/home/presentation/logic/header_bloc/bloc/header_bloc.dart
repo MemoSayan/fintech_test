@@ -12,6 +12,7 @@ part 'header_state.dart';
 class HeaderBloc extends Bloc<HeaderEvent, HeaderState> {
   HeaderBloc() : super(HeaderInitial()) {
     on<ToggleBalance>(_onToggleBalance);
+    on<GetBalance>(_onGetBalance);
   }
 
   FutureOr<void> _onToggleBalance(
@@ -21,6 +22,10 @@ class HeaderBloc extends Bloc<HeaderEvent, HeaderState> {
     emit(state.copyWith(balanceStatus: isVisible
         ? BalanceStatus.visible
         : BalanceStatus.hidden));
-    
       }
+
+      FutureOr<void> _onGetBalance(
+        GetBalance event, Emitter<HeaderState> emit) async {
+        emit(state.copyWith(balance: '3.040.650'));
+        }
 }

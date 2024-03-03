@@ -13,7 +13,22 @@
         "--flavor",
         "development",
         "--target",
-        "lib/main_development.dart"
+        "lib/main_development.dart",
+        "--dart-define=FINTECH_ENVIRONMENT=dev",
+      ]
+    },
+    {
+      "name": "Launch mock",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_development.dart",
+      "args": [
+        "--flavor",
+        "mock",
+        "--target",
+        "lib/main_development.dart",
+        "--dart-define=FINTECH_ENVIRONMENT=mock",
+        "--dart-define=FINTECH_USE_MOCKS=true",
       ]
     },
     {
@@ -28,7 +43,7 @@
       "request": "launch",
       "type": "dart",
       "program": "lib/main_production.dart",
-      "args": ["--flavor", "production", "--target", "lib/main_production.dart"]
+      "args": ["--flavor", "production", "--target", "lib/main_production.dart", "--dart-define=FINTECH_ENVIRONMENT=prod",]
     }
   ]
 }
