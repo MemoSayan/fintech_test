@@ -1,6 +1,5 @@
 
 import 'package:fintech_test/core/core.dart';
-import 'package:fintech_test/core/theme/app_colors.dart';
 import 'package:fintech_test/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,7 +20,7 @@ class App extends StatelessWidget {
           routerConfig: goRouter,
           theme: ThemeData(
             appBarTheme: const AppBarTheme(
-              backgroundColor: AppColors.ligthBackground,
+              backgroundColor: AppColors.primaryLigthBackground,
             ),
             useMaterial3: true,
           ),

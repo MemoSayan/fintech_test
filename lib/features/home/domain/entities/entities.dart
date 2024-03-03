@@ -1,0 +1,1 @@
+export '../entities/movement.dart';
