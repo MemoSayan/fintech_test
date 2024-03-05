@@ -15,7 +15,6 @@ class CustomSliverAppBar extends StatelessWidget {
       expandedHeight: 250,
       collapsedHeight: 250,
       pinned: true,
-      automaticallyImplyLeading: false,
       flexibleSpace: CustomFlexibleSpaceBar(),
     );
   }

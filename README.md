@@ -35,11 +35,10 @@ $ fvm flutter pub get
 
 To run the desired flavor either use the launch configuration in VSCode/Android Studio or use the following commands:
 
- Actually only works fine on mock flavor 
 
 ```sh
 # Development
-$ flutter run --flavor development --target lib/main_development.dart --dart-define=FINTECH_ENVIRONMENT=mock --dart-define=FINTECH_USE_MOCKS=true
+$ flutter run --flavor mock --target lib/main_development.dart --dart-define=FINTECH_ENVIRONMENT=mock --dart-define=FINTECH_USE_MOCKS=true
 
 ```
 

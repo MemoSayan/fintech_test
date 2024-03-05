@@ -19,14 +19,14 @@ class SpentCategoryDetail extends StatelessWidget {
               Text(
                 'Operacion:',
                 style: TextStyle(
-                    fontSize: 16.sp,
+                    fontSize: 15.sp,
                     color: Colors.black87,
                     fontWeight: FontWeight.w500),
               ),
               Text(
                 'Restaurantes y bares',
                 style: TextStyle(
-                    fontSize: 16.sp,
+                    fontSize: 15.sp,
                     color: Colors.black87,
                     fontWeight: FontWeight.w500),
               ),
