@@ -1,59 +1,57 @@
 import 'package:fintech_test/core/core.dart';
+import 'package:fintech_test/core/widgets/coming_soon.dart';
+import 'package:fintech_test/features/analytics/presentation/views/pages/selection_page.dart';
+import 'package:fintech_test/features/analytics/presentation/views/pages/spent_analytics.dart';
 import 'package:fintech_test/features/home/presentation/logic/logic.dart';
 import 'package:fintech_test/features/home/presentation/logic/movements_bloc/bloc/movements_bloc.dart';
+import 'package:fintech_test/features/home/presentation/views/widgets/account_summary_widget.dart';
 import 'package:fintech_test/features/home/presentation/views/widgets/bottom_navbar.dart';
-import 'package:fintech_test/features/home/presentation/views/widgets/movements_widgets.dart';
-import 'package:fintech_test/features/home/presentation/views/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   bool showBalance = false;
+  int _currentIndex = 0;
+  final PageController _pageController = PageController();
+
+  void onTabTapped(int index) {
+    _pageController.animateToPage(
+      index,
+      duration: Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+    print('Ítem tocado: $index');
+  }
 
   @override
   Widget build(BuildContext context) {
     context.read<HeaderBloc>().add(GetBalance('123456'));
     context.read<MovementsBloc>().add(const GetMovements('123456'));
     return Scaffold(
-        backgroundColor: AppColors.primaryLigthBackground,
-        body: CustomScrollView(
-          slivers: [
-            const CustomSliverAppBar(),
-            BlocBuilder<MovementsBloc, MovementsState>(
-              builder: (context, state) {
-                if (state is MovementsLoading) {
-                  return const SliverToBoxAdapter(
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
-                }
-                if (state is MovementsLoaded) {
-                  return MainMovementsWidget(
-                    movements: state.movements,
-                  );
-                }
-                if (state is MovementsError) {
-                  return SliverToBoxAdapter(
-                    child: Center(
-                      child: Text(state.message),
-                    ),
-                  );
-                } else {
-                  return const SliverToBoxAdapter(
-                    child: Center(
-                      child: Text('Error'),
-                    ),
-                  );
-                }
-              },
-            ),
-          ],
-        ),
-        bottomNavigationBar: Theme(data: Theme.of(context).copyWith(
+      backgroundColor: AppColors.primaryLigthBackground,
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
+          setState(() {
+          _currentIndex = index;
+          });
+        },
+        children:  [
+          AccountSummaryWidget(),
+        ComingSoonPage(),
+        
+          SelectAnalyticsPage(),
+        ],
+      ),
+      bottomNavigationBar: Theme(
+        data: Theme.of(context).copyWith(
           canvasColor: AppColors.primaryLigthBackground,
           splashColor: AppColors.secondary.withOpacity(0.2),
         ),
@@ -68,10 +66,12 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
-          child: const CustomBottomNavigationBar())),
-        );
+          child: CustomBottomNavigationBar(
+            onTap: onTabTapped,
+            currentIndex: _currentIndex,
+          ),
+        ),
+      ),
+    );
   }
 }
-
-
-
