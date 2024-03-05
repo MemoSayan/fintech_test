@@ -73,12 +73,20 @@ $ flutter clean
 
 These steps are intended to resolve the specific issue you are facing. Make sure to follow each step carefully to ensure a successful resolution.
  
-   
+ ---  
 
+## Build release Android 
+
+### Generate APK for DEV
+
+1. To generate the apk you must specify the `target flavor` and the `environment`
+```sh
+$ flutter build apk --debug --flavor dev --dart-define=FINEX_ENVIRONMENT=dev
+
+
+$ fvm flutter build apk --debug --flavor mock --dart-define=FINTECH_ENVIRONMENT=mock --dart-define=FINTECH_USE_MOCKS=true -t lib/main_development.dart --obfuscate --split-debug-info=/build
 
 ---
-
-
 ## Project Description
 
 ### Project Structure
