@@ -38,7 +38,7 @@ class MovementsMockDataSoure implements MovementsDataSource {
   
   @override
   Future<DT<MovementsResponse>> getMovements(String idClient) async {
-  await Future.delayed(const Duration(milliseconds: 1200));
+  await Future.delayed(const Duration(milliseconds: 1400));
    return right(
       MovementsResponse.fromJson(movementsResponseMock),
     );

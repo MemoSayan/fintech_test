@@ -4,7 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ComingSoonPage extends StatelessWidget {
-  const ComingSoonPage({super.key});
+  const ComingSoonPage({super.key, required this.title, required this.path});
+
+  final String title;
+  final String path;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +15,7 @@ class ComingSoonPage extends StatelessWidget {
       backgroundColor: AppColors.primaryLigthBackground,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Analytics',
+        title: Text(title,
             style: TextStyle(
                 color: AppColors.selectedColor,
                 fontSize: 18.sp,
@@ -64,29 +67,21 @@ class ComingSoonPage extends StatelessWidget {
                     color: AppColors.primaryLigthBackground,
                   ),
                   child: SvgPicture.asset(
-                    'assets/svgs/analysis_icon.svg',
+                   path,
                     height: 60.sp,
                     width: 60.sp,
-                    color: AppColors.selectedColor,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.black26, BlendMode.srcIn),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 20.h),
-            Text(
-              'Spent Analysis',
-              style: TextStyle(
-                color: AppColors.selectedColor,
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 50.h),
             Text(
               'Coming soon...',
               style: TextStyle(
                 color: AppColors.titleColor,
-                fontSize: 16.sp,
+                fontSize: 18.sp,
                 fontWeight: FontWeight.w400,
               ),
             ),

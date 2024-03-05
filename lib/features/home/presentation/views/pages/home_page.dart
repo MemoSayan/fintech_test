@@ -40,14 +40,20 @@ class _HomePageState extends State<HomePage> {
         controller: _pageController,
         onPageChanged: (index) {
           setState(() {
-          _currentIndex = index;
+            _currentIndex = index;
           });
         },
-        children:  [
+        children: const [
           AccountSummaryWidget(),
-        ComingSoonPage(),
-        
+          ComingSoonPage(
+            title: 'Transactios',
+            path: 'assets/svgs/transfer_icon.svg',
+          ),
           SelectAnalyticsPage(),
+           ComingSoonPage(
+            title: 'Account',
+            path: 'assets/svgs/profile_icon.svg',
+          ),
         ],
       ),
       bottomNavigationBar: Theme(

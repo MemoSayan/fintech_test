@@ -1,6 +1,5 @@
 import 'package:fintech_test/core/core.dart';
 import 'package:fintech_test/features/home/domain/domain.dart';
-import 'package:fintech_test/features/home/domain/entities/type_to_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';

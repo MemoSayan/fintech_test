@@ -11,29 +11,117 @@ A Very Good Project created by Very Good CLI.
 ---
 
 ## Getting Started 🚀
+Prerequisites
+Make sure to list any prerequisites needed to run your application. For example:
 
-This project contains 3 flavors:
+- Flutter SDK (version 3.19.2)
+- FVM - Flutter Version Management(opcional)
 
-- development
-- staging
-- production
+If the correct sdk or FMV version are installed you can simply use: 
+
+``` sh  
+# Install FVM (Flutter Version Management)
+$ fvm install 3.19.2
+
+# Use the specified Flutter version
+$ fvm use 3.19.2
+
+# Install project dependencies
+$ fvm flutter pub get
+
+# run buil runner
+ $ fvm dart run build_runner build --delete-conflicting-outputs
+
 
 To run the desired flavor either use the launch configuration in VSCode/Android Studio or use the following commands:
 
+ Actually only works fine on mock flavor 
+
 ```sh
 # Development
-$ flutter run --flavor development --target lib/main_development.dart
+$ flutter run --flavor development --target lib/main_development.dart --dart-define=FINTECH_ENVIRONMENT=mock --dart-define=FINTECH_USE_MOCKS=true
 
-# Staging
-$ flutter run --flavor staging --target lib/main_staging.dart
-
-# Production
-$ flutter run --flavor production --target lib/main_production.dart
 ```
 
 _\*Fintech Test works on iOS, Android, Web, and Windows._
 
 ---
+
+## Project Description
+
+### Project Structure
+
+The project follows the Clean Architecture pattern, promoting separation of concerns and maintainability. Below is an overview of the key directories and files:
+
+```
+.
+├── lib
+│   ├── features
+│   │   ├── data
+│   │   │   ├── repositories
+│   │   │   │   ├── user_repository_impl.dart
+│   │   │   │   └── ...
+│   │   │   └── data_sources
+│   │   │   |   ├── remote_data_source.dart
+│   │   │   |   └── ...
+|   |   |   |__ models
+|   |   |       ├── user_response.dart
+│   │   │       └── ...
+|   |   |   
+│   │   ├── domain 
+│   │   │   ├── entities
+│   │   │   │   ├── user.dart
+│   │   │   │   └── ...
+│   │   │   ├── repositories
+│   │   │   │   ├── user_repository.dart
+│   │   │   │   └── ...
+│   │   │   └── usecases
+│   │   │       ├── get_user_info_usecase.dart
+│   │   │       └── ...
+│   │   └── presentation
+|   |       |
+|   |       ├── logic
+|   |       |   ├── auth_bloc
+|   |       |   └── ... 
+│   │       └──  views
+│   │           ├── pages
+|   |           |    ├── login_page.dart
+|   |           |    └── ... 
+│   │           └──  widgets
+|   |               ├── login_body.dart
+|   |               └── ...       
+│   ├── core
+│   │   ├── helpers
+│   │   └── ...
+│   ├── app
+│   │   ├── app.dart
+│   │   └── ... 
+|   |   
+│   └── main_development.dart
+├── assets
+│   ├── images
+│   │   ├── logo.png
+│   │   └── ...
+│   └── ...
+├── pubspec.yaml
+└── ...
+
+```
+## Clean Architecture 🧽
+The project adheres to the principles of Clean Architecture:
+
+Data Layer: Manages data sources and repositories responsible for data retrieval.
+Domain Layer: Contains entities, use cases, and interfaces defining business logic.
+Presentation Layer: Handles UI components, screens, and state management.
+
+Key Components
+User Repository: Manages the data access logic for user-related operations.
+Remote Data Source: Handles data retrieval from remote sources (APIs, databases, etc.).
+User Entity: Represents the core structure for user-related data.
+Get User Info Use Case: Implements the business logic for retrieving user information.
+
+---
+
 
 ## Running Tests 🧪
 

@@ -11,7 +11,7 @@ class SelectAnalyticsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryLigthBackground,
-      appBar: AppBarCustom(
+      appBar: const AppBarCustom(
         title: 'Análisis',
       ),
       body: Center(

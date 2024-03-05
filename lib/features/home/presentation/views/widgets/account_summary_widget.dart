@@ -1,5 +1,7 @@
+import 'package:fintech_test/core/widgets/skeleton_widget.dart';
 import 'package:fintech_test/features/home/presentation/logic/movements_bloc/bloc/movements_bloc.dart';
 import 'package:fintech_test/features/home/presentation/views/widgets/custom_sliver_appbar.dart';
+import 'package:fintech_test/features/home/presentation/views/widgets/movements_loader_widget.dart';
 import 'package:fintech_test/features/home/presentation/views/widgets/movements_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,11 +19,7 @@ class AccountSummaryWidget extends StatelessWidget {
         BlocBuilder<MovementsBloc, MovementsState>(
           builder: (context, state) {
             if (state is MovementsLoading) {
-              return const SliverToBoxAdapter(
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
+              return const MovementsLoader();
             }
             if (state is MovementsLoaded) {
               return MainMovementsWidget(
@@ -47,5 +45,3 @@ class AccountSummaryWidget extends StatelessWidget {
     );
   }
 }
-
-
