@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:fintech_test/core/core.dart';
-import 'package:fintech_test/core/mocks/movements/movements_mock.dart';
 import 'package:fintech_test/features/home/data/data.dart';
 import 'package:injectable/injectable.dart';
 

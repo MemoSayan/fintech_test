@@ -1,4 +1,6 @@
 enum AppRoute {
   home,
-  counter,
+  spentAnalytics,
+  spentAnalyticsDetail,
+  movementDetail,
 }
