@@ -45,7 +45,7 @@ class SpentCategorySummary extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 15.w,
+                  width: 12.w,
                 ),
                 Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +55,7 @@ class SpentCategorySummary extends StatelessWidget {
                       child: Text(
                         category,
                         style: TextStyle(
-                          fontSize: 12.sp,
+                          fontSize: 11.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -65,7 +65,7 @@ class SpentCategorySummary extends StatelessWidget {
                       child: Text(
                         description,
                         style: TextStyle(
-                          fontSize: 12.sp,
+                          fontSize: 11.sp,
                           fontWeight: FontWeight.w500,
                           color: Colors.black54
                         ),
@@ -80,14 +80,14 @@ class SpentCategorySummary extends StatelessWidget {
                 Text(
                   amount,
                   style: TextStyle(
-                    fontSize: 12.sp,
+                    fontSize: 11.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
                  Text(
                   date,
                   style: TextStyle(
-                    fontSize: 12.sp,
+                    fontSize: 11.sp,
                     fontWeight: FontWeight.w500,
                       color: Colors.black54
                   ),

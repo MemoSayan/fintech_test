@@ -91,14 +91,14 @@ class MainMovementsWidget extends StatelessWidget {
                                     Text(
                                       movimiento.amount,
                                       style: TextStyle(
-                                        fontSize: 14.sp,
+                                        fontSize: 12.sp,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                     SizedBox(width: 5.w),
                                     Text(movimiento.currencyCode,
                                         style: TextStyle(
-                                          fontSize: 14.sp,
+                                          fontSize: 12.sp,
                                           fontWeight: FontWeight.w500,
                                         )),
                                   ],
@@ -107,7 +107,7 @@ class MainMovementsWidget extends StatelessWidget {
                               Text(
                                 movimiento.date,
                                 style: TextStyle(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                   color: AppColors.titleColor,
                                 ),

@@ -8,8 +8,7 @@ abstract class MovementsDataSource {
 }
 
 
-@Environment('DEV')
-@Singleton(as: MovementsDataSource)
+
 class MovementsDataSoure implements MovementsDataSource {
   MovementsDataSoure({required this.networkClient});
 
@@ -29,6 +28,7 @@ class MovementsDataSoure implements MovementsDataSource {
 
 }
 
+@Environment('DEV')
 @Environment('MOCK')
 @Singleton(as: MovementsDataSource)
 class MovementsMockDataSoure implements MovementsDataSource {

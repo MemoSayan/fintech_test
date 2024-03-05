@@ -45,7 +45,40 @@ $ flutter run --flavor development --target lib/main_development.dart --dart-def
 
 _\*Fintech Test works on iOS, Android, Web, and Windows._
 
+## Possible Issues 🛠️
+
+If you encounter any issues while setting up or running the application, here are some common problems and their solutions:
+
+### 1. AppLocalizations.
+
+_\*because l10n.yaml exists the options defined there will be used instead._
+
+#### Solution:
+
+1. **Step 1:**.
+  # Regenerate localization files and clean the project
+   ```sh
+$ flutter gen-l10n
+$ flutter clean
+```
+  # Additionally, in your pubspec.yaml file, modify the generate line from true to false as follows:
+       ``` generate: false ```
+
+   After making this change, execute the following commands:
+  # Get project dependencies
+    $ flutter pub get
+
+    # Restore the 'generate' setting to true
+    $ flutter gen-l10n
+    $ flutter pub get
+
+These steps are intended to resolve the specific issue you are facing. Make sure to follow each step carefully to ensure a successful resolution.
+ 
+   
+
+
 ---
+
 
 ## Project Description
 

@@ -15,8 +15,7 @@ import '../../features/home/data/data.dart' as _i9;
 import '../../features/home/data/data_source/movements_data_source.dart' as _i5;
 import '../../features/home/data/repositories/movements_repository_impl.dart'
     as _i8;
-import '../../features/home/domain/repositories/movements_repository.dart'
-    as _i7;
+import '../../features/home/domain/domain.dart' as _i7;
 import '../../features/home/domain/use_cases/get_movements_use_case.dart'
     as _i10;
 import '../../features/home/presentation/logic/header_bloc/bloc/header_bloc.dart'
@@ -43,12 +42,11 @@ extension GetItInjectableX on _i1.GetIt {
     gh.singleton<_i3.FormatHelpers>(_i3.FormatHelpers());
     gh.factory<_i4.HeaderBloc>(() => _i4.HeaderBloc());
     gh.singleton<_i5.MovementsDataSource>(
-      _i5.MovementsDataSoure(networkClient: gh<_i6.NetworkClient>()),
-      registerFor: {_DEV},
-    );
-    gh.singleton<_i5.MovementsDataSource>(
       _i5.MovementsMockDataSoure(networkClient: gh<_i6.NetworkClient>()),
-      registerFor: {_MOCK},
+      registerFor: {
+        _DEV,
+        _MOCK,
+      },
     );
     gh.singleton<_i7.MovementsRepository>(_i8.MovementsRepositoryImpl(
       gh<_i3.FormatHelpers>(),
